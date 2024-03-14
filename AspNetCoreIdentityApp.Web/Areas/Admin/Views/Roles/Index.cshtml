@@ -1,0 +1,48 @@
+﻿@model List<AdminModel.RoleViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-6 offset-md-2">
+        <h1>Roller</h1>
+    </div>
+    <div class="col-md-2">
+        <a asp-controller="Roles" asp-area="Admin" asp-action="RoleCreate" class="btn btn-primary">Role Ekle</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success" role="alert">
+                @TempData["SuccessMessage"]
+            </div>
+        }
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Role</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model)
+                {
+                    <tr>
+                        <td>@user.Id</td>
+                        <td>@user.Name</td>
+                        <td>
+                            <a class="btn btn-outline-dark" asp-area="admin" asp-controller="Roles" asp-action="RoleUpdate" asp-route-id="@user.Id">Güncelle</a>
+                            <a class="btn btn-outline-danger my-1" asp-area="admin" asp-controller="Roles" asp-action="RoleDelete" asp-route-id="@user.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

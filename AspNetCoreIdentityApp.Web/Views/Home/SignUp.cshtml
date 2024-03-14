@@ -1,0 +1,76 @@
+﻿@{
+    ViewData["Title"] = "SignUp";
+}
+@model SignUpViewModel
+@section  Scripts 
+{
+
+    @await Html.PartialAsync("_ValidationScriptsPartial");
+
+}
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <h2>Kullanıcı Kayıt Formu</h2>
+
+        @if(TempData["SuccessMessage"]!=null)
+        {
+            <div class="alert alert-success" role="alert">
+                @TempData["SuccessMessage"]
+            </div>   
+        }
+
+            <div class="alert alert-danger" asp-validation-summary=ModelOnly role="alert">
+            </div>   
+
+        <form asp-controller="Home" asp-action="SignUp" method="post">
+            <div class="row mb-3">
+                <label for="UserName" asp-for="UserName" class="col-md-4 col-form-label"></label>
+                <div class="col-md-8">
+                    <input class="form-control" asp-for="UserName" autocomplete="off">
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+            </div>
+            
+            <div class="row mb-3">
+                <label for="Email" asp-for="Email" class="col-md-4 col-form-label"></label>
+                <div class="col-md-8">
+                    <input class="form-control" asp-for="Email" autocomplete="off">
+                     <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+            </div>
+            
+            <div class="row mb-3">
+                <label for="Phone" asp-for="Phone" class="col-md-4 col-form-label"></label>
+                <div class="col-md-8">
+                    <input class="form-control" asp-for="Phone" autocomplete="off">
+                     <span asp-validation-for="Phone" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="Password" asp-for="Password" class="col-md-4 col-form-label"></label>
+                <div class="col-md-8">
+                    <input class="form-control" asp-for="Password" autocomplete="off">
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="ConfirmPassword" asp-for="ConfirmPassword" class="col-md-4 col-form-label"></label>
+                <div class="col-md-8">
+                    <input class="form-control" asp-for="ConfirmPassword" autocomplete="off">
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                </div>
+            </div>
+
+            
+            <div class="row mb-3">
+                <div class="col-md-8 offset-md-4">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </form>    
+    </div>
+</div
+
+

@@ -1,0 +1,31 @@
+﻿@using System.Security.Claims
+
+
+@if (User.Identity.IsAuthenticated)
+{
+    <ul class="navbar-nav me-2">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-capitalize" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                @User.Identity.Name
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <li><a class="dropdown-item" asp-controller="Member" asp-action="Index">Profile</a></li>
+                <li><a class="dropdown-item" asp-controller="Member" asp-action="PasswordChange">Şifre Değiştir</a></li>
+                <li><a class="dropdown-item" asp-controller="Member" asp-action="UserEdit">Kullanıcı Güncelle</a></li>
+                <li><a class="dropdown-item" asp-controller="Member" asp-action="Claims">User Claims</a></li>
+                @{
+                    if(User.HasClaim(x =>x.Type == ClaimTypes.Role && x.Value == "admin"))
+                    {
+                        <li><a class="dropdown-item" asp-area="Admin" asp-controller="Home" asp-action="Index">Admin</a></li>
+                    }
+                }
+                <li><a class="dropdown-item" asp-controller="Member" asp-action="Logout" asp-route-returnurl="/Home/Index">Çıkış</a></li>
+            </ul>
+        </li>
+    </ul>
+}
+else
+{
+    <a class="btn btn-outline-dark" asp-area="" asp-controller="Home" asp-action="SignUp">Sign Up</a>
+    <a class="btn btn-outline-dark mx-1" asp-area="" asp-controller="Home" asp-action="SignIn">Sign In</a>
+}

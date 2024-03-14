@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewData["Title"] = "SignIn";
+}
+@section Scripts
+{
+
+    @await Html.PartialAsync("_ValidationScriptsPartial");
+
+}
+
+@model SignInViewModel
+
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <h1>Kullanıcı Giriş Formu</h1>
+        <div class="alert alert-danger" asp-validation-summary=ModelOnly role="alert">
+        </div>
+        <form asp-controller="Home" asp-action="SignIn" asp-route-returnurl="@Context.Request.Query["returnURL"]" method="post">
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label"></label>
+                <input class="form-control" asp-for="Email">
+                <span class="text-danger" asp-validation-for="Email"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Password" class="form-label"></label>
+                <input type="password" class="form-control" asp-for="Password">
+                <span class="text-danger" asp-validation-for="Password"></span>
+            </div>
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" asp-for="RememberMe">
+                <label class="form-check-label" asp-for="RememberMe" for="RememberMe"></label>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <div>
+                <a asp-controller="Home" asp-action="ForgetPassword" class="btn btn-link">Şifremi Unuttum</a>
+            </div>
+        </form>
+    </div>
+</div>
